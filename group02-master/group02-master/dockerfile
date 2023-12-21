@@ -1,0 +1,18 @@
+# Use python 
+FROM python:3.10.6
+
+
+# the working directory in the container to /app
+WORKDIR /app  
+
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copy everything into /app
+COPY . /app
+
+# Make sure port 8051 is available
+EXPOSE 8051
+
+CMD streamlit run app.py --server.port 8051 --server.enableCORS false
